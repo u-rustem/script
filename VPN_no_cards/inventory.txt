@@ -1,0 +1,6 @@
+[ask]
+ask1 ansible_host=192.168.1.13 ansible_user=root ansible_ssh_pass=a_r_84
+
+[sgve]
+sgve1 ansible_host=192.168.1.100 ansible_user=sysadmin ansible_ssh_pass=sysadmin
+

@@ -1,0 +1,34 @@
+---
+- name: Transfer scripts check
+  hosts: ask
+  user: root
+  tasks:
+    - name: Start VPN
+      shell: sh /home/unixsun/vpncard/startvpn.sh
+
+- name: Add IP
+  hosts: sgve
+  user: sysadmin
+  tasks:
+    - name: Transfer SGVE
+      copy: src=/home/unixsun/vpncard/block.sh dest=/home/sysadmin mode=0777
+    - name: Transfer 
+      copy: src=/home/unixsun/vpncard/vpnIP.txt dest=/home/sysadmin mode=0777
+    - name: Transfer
+      copy: src=/home/unixsun/vpncard/oldIP.txt dest=/home/sysadmin mode=0777
+
+- name: Add IP
+  hosts: sgve
+  user: sysadmin
+  tasks:
+    - name: Run block
+      shell: sh /home/sysadmin/block.sh
+    - name: Transfer IP and Port
+      fetch: src=/mnt/common/sysadmin/IPvpn.txt dest=/home/unixsun/vpncard mode=0777 
+
+- name: Stop VPN
+  hosts: ask
+  user: root
+  tasks:
+    - name: Stop VPN
+      shell: sh /home/unixsun/vpncard/stopvpn.sh
