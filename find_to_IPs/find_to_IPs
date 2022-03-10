@@ -1,0 +1,28 @@
+#!/bin/bash
+
+site="$1"
+cd /rus/find_to_IPs/
+nslookup $site | grep -e Address -e Name > site.txt
+
+file="/rus/find_to_IPs/site.txt"
+
+
+
+
+while read lineA
+    do
+
+if [[ `echo $lineA | awk '{print $2}'` != "$site" ]]; then
+        if [[ `echo $lineB | awk '{print $2}'` == "$site" ]]; then
+                echo $lineA | awk '{print $2}' >> $site1.txt
+        fi
+
+fi
+lineB=$lineA
+
+
+
+done < $file
+
+awk '!_[$0]++' $site1.txt > $site.txt
+> $site1.txt

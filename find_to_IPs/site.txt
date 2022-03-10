@@ -1,0 +1,5 @@
+Address:	192.168.1.1#53
+Name:	avg.com
+Address: 69.94.64.29
+Name:	avg.com
+Address: 185.189.92.41
